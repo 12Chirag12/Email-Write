@@ -1,0 +1,36 @@
+<div class="login-wrap" role="main" aria-label="Login form">
+	<div class="login-accent" aria-hidden="true"></div>
+	<div class="login-title">Login</div>
+	<div class="divider"></div>
+
+	<form (ngSubmit)="login()" #loginForm="ngForm" novalidate>
+		<div class="field">
+			<label for="username">Username</label>
+			<input id="username" type="text" name="username" [(ngModel)]="username" autocomplete="username" placeholder="Enter username" required>
+		</div>
+
+		<div class="field">
+			<label for="password">Password</label>
+			<input id="password" type="password" name="password" [(ngModel)]="password" autocomplete="current-password" placeholder="Enter password" required>
+		</div>
+
+		<div class="forgot">Forget Password?</div>
+
+			<!-- Inline messages removed — modal alert will show feedback instead -->
+
+			<button type="submit" class="btn-login" [disabled]="!username || !password">Login</button>
+	</form>
+
+	<div class="signup">Not a Member ? <a href="#">Signup</a></div>
+</div>
+
+<!-- Alert modal overlay -->
+<div class="alert-overlay" *ngIf="showAlert">
+	<div class="alert-box" [ngClass]="alertType" role="dialog" aria-modal="true">
+		<div class="alert-icon" aria-hidden="true">{{ alertType === 'success' ? '✓' : '!' }}</div>
+		<div class="alert-body">{{ alertText }}</div>
+		<div class="alert-actions">
+			<button type="button" class="btn-login" (click)="closeAlert()">OK</button>
+		</div>
+	</div>
+</div>
