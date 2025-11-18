@@ -1,0 +1,93 @@
+<div class="writer-root">
+  <aside class="controls" [class.collapsed]="!showLeft">
+   
+    
+
+    <div class="field">
+      <label class="label">Select language</label>
+      <select class="input" [(ngModel)]="emailobject.language">
+        <option>{{ emailobject.language }}</option>
+        <option>Spanish</option>
+        <option>French</option>
+      </select>
+    </div>
+
+    <div class="field">
+      <label class="label">Select tone/voice</label>
+      <select class="input" [(ngModel)]="emailobject.tone">
+        <option>{{ emailobject.tone }}</option>
+        <option>Friendly</option>
+        <option>Professional</option>
+      </select>
+    </div>
+
+    <div class="field">
+      <label class="label">Choose use case</label>
+      <select class="input" [(ngModel)]="emailobject.useCase">
+        <option>{{ emailobject.useCase }}</option>
+        <option>Marketing</option>
+        <option>Follow-up</option>
+      </select>
+    </div>
+
+    <div class="field">
+      <label class="label">Key points <span class="badge-small"></span></label>
+      <textarea class="textarea" [(ngModel)]="emailobject.keyPoints"></textarea>
+    </div>
+
+    <div class="row small-row">
+      <div class="field-inline">
+        <label class="label small">Variants</label>
+        <input class="small-input" type="number" min="1" [(ngModel)]="emailobject.variants" />
+      </div>
+      <div class="field-inline">
+        <label class="label small">Creativity</label>
+        <select class="small-input" [(ngModel)]="emailobject.creativity">
+          <option>{{ emailobject.creativity }}</option>
+          <option>Low</option>
+          <option>High</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="controls-bottom">
+      <div style="display:flex;gap:8px;align-items:center">
+        <button class="primary" (click)="generateEmail()">Generate Email</button>
+      </div>
+      <div class="help">Click to generate and view the email preview</div>
+    </div>
+  </aside>
+
+  <main class="editor">
+    <div class="editor-top">
+      <div class="toolbar">
+        <div class="toolbar-left">
+          <button class="tb" (click)="togglePanel()">{{ showLeft ? 'Hide' : 'Show' }} panel</button>
+          <button class="tb" (click)="format('bold')"><strong>B</strong></button>
+          <button class="tb" (click)="format('italic')"><em>I</em></button>
+          <button class="tb" (click)="format('underline')"><u>U</u></button>
+          <button class="tb" (click)="format('h1')">H1</button>
+          <button class="tb" (click)="format('h2')">H2</button>
+        </div>
+        <div class="toolbar-right">
+          <span class="meta">Words {{ wordCount }} • Characters {{ charCount }}</span>
+        </div>
+      </div>
+    </div>
+
+    <section class="preview" *ngIf="showPreview">
+      <div class="subject-row">
+        <div class="subject-label">Subject</div>
+        <div class="subject-value">{{ subject }}</div>
+      </div>
+
+      <div class="email-card">
+        <div class="greeting">Hello <span class="client">{{ recipient }}</span>,</div>
+
+        <div class="email-body" contentEditable="true" #previewBody (input)="onPreviewInput()" [innerHTML]="bodyHtml"></div>
+
+        <p class="signature">Best regards,<br/>[Your Name]</p>
+      </div>
+    </section>
+  </main>
+</div>

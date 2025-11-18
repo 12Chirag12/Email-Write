@@ -119,6 +119,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "Email-Write"
+    }
+  },
+  "defaultProject": "Email-Write",
+  "cli": {
+    "analytics": "3561dc89-d4dc-4913-a66b-7bf361bd3c25"
+  }
 }
