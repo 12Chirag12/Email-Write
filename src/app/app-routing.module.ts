@@ -1,20 +1,16 @@
 import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
-import { FormsModule } from '@angular/forms';
-
-import { AppComponent } from './app.component';
+import { RouterModule, Routes } from '@angular/router';
 import { WriterComponent } from './writer/writer.component';
+import { LoginComponent } from './login/login.component';
+
+const routes: Routes = [
+  { path: 'writer', component: WriterComponent },
+  { path: 'login', component: LoginComponent },
+  { path: '', redirectTo: 'login', pathMatch: 'full' }
+];
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    WriterComponent
-  ],
-  imports: [
-    BrowserModule,
-    FormsModule
-  ],
-  providers: [],
-  bootstrap: [AppComponent]
+  imports: [RouterModule.forRoot(routes)],
+  exports: [RouterModule]
 })
-export class AppModule { }
+export class AppRoutingModule { }
